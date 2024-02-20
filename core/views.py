@@ -13,3 +13,8 @@ def image_upload(request):
    else:
        form = ImageUploadForm()
    return render(request, 'upload.html', {'form': form})
+
+   def image_list(request):
+    images = Image.objects.all()
+    return render(request, 'list.html', {'images': images})
+
