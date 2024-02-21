@@ -18,3 +18,10 @@ def image_upload(request):
     images = Image.objects.all()
     return render(request, 'list.html', {'images': images})
 
+    def like_image(request, image_id):
+   # ... Logic to increment num_up_vote for 'Image' and return updated count
+
+def dislike_image(request, image_id):
+    # ... Logic to increment num_down_vote for 'Image' and return updated count
+
+
