@@ -1,22 +1,11 @@
-"""
-URL configuration for image_sharing_app project.
 
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/5.0/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  path('', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
-Including another URLconf
-    1. Import the include() function: from django.urls import include, path
-    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
-"""
-from django.contrib import admin
+# image_sharing_app/urls.py
 from django.urls import path
+from core import views
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('', views.image_list, name='image_list'), 
+    path('upload', views.image_upload, name='image_upload'),
+    path('like/<int:image_id>/$', views.like_image, name='like_image'),
+    path('dislike/<int:image_id>/$', views.dislike_image, name='dislike_image'),
 ]
