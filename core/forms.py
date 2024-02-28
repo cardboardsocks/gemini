@@ -6,7 +6,8 @@ class ImageUploadForm(forms.ModelForm):
     class Meta:
         model = Image
         fields = ['image', 'caption']
+        
 class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
-        fields = ['content']
+        fields = ['content']  

@@ -1,6 +1,28 @@
 from django.shortcuts import render, redirect
 from .forms import ImageUploadForm
 from .models import Image
+from django.shortcuts import get_object_or_404
+from django.http import JsonResponse
+
+def like_image(request, image_id):
+    if request.method == 'POST':
+        image = get_object_or_404(Image, pk=image_id)
+        image.num_up_vote += 1
+        image.save()
+        return JsonResponse({'updated_like_count': image.num_up_vote}) 
+    else:
+        # Handle non-AJAX requests if needed
+        pass 
+
+def dislike_image(request, image_id):
+    if request.method == 'POST':
+        image = get_object_or_404(Image, pk=image_id)
+        image.num_down_vote += 1
+        image.save()
+        return JsonResponse({'updated_dislike_count': image.num_down_vote}) 
+    else:
+        # Handle non-AJAX requests if needed
+        pass
 
 def image_upload(request):
    if request.method == 'POST':
@@ -17,11 +39,5 @@ def image_upload(request):
    def image_list(request):
     images = Image.objects.all()
     return render(request, 'list.html', {'images': images})
-
-    def like_image(request, image_id):
-   # ... Logic to increment num_up_vote for 'Image' and return updated count
-
-def dislike_image(request, image_id):
-    # ... Logic to increment num_down_vote for 'Image' and return updated count
 
 
