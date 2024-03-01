@@ -10,6 +10,7 @@ class Image(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     num_up_vote = models.IntegerField(default=0)
     num_down_vote = models.IntegerField(default=0)
+    voters = models.ManyToManyField(User, blank=True)
 
 class Comment(models.Model):
     image = models.ForeignKey(Image, on_delete=models.CASCADE)
