@@ -1,6 +1,5 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .forms import ImageUploadForm
-from django.shortcuts import get_object_or_404, redirect
 from django.http import JsonResponse
 from .models import Image
 
@@ -44,7 +43,7 @@ def image_upload(request):
        form = ImageUploadForm()
    return render(request, 'upload.html', {'form': form})
 
-   def image_list(request):
+def image_list(request):
     images = Image.objects.all()
     return render(request, 'list.html', {'images': images})
 
